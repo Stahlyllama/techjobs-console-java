@@ -7,13 +7,17 @@ import java.util.Scanner;
 /**
  * Created by LaunchCode
  */
-public class TechJobs {
+public class  TechJobs {
 
     private static Scanner in = new Scanner(System.in);
-
+//contains the main method that will drive our programs functionality
+//get UserSelection method displays menu of choices and returns the user's selection
+//printJobs will print a list of jobs to the console
     public static void main (String[] args) {
+        //the logic in main presents menus in turn and based on the user's choice takes appropriate action.
 
-        // Initialize our field map with key/name pairs
+
+        // Initialize our local variables columnChoices and actionChoices aka field map and top-level menu options with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
         columnChoices.put("core competency", "Skill");
         columnChoices.put("employer", "Employer");
@@ -21,9 +25,14 @@ public class TechJobs {
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
 
+//        for(HashMap<String, String> columnChoices : someJobs){
+//            for(HashMap<String, String> position : columnChoices){
+//                System.out.println(columnChoices);
+//            }
+//        }
         // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
-        actionChoices.put("search", "Search");
+        actionChoices.put("search", "Search");    //Search and List are the data used to generate the first menu
         actionChoices.put("list", "List");
 
         System.out.println("Welcome to LaunchCode's TechJobs App!");
@@ -31,7 +40,8 @@ public class TechJobs {
         // Allow the user to search until they manually quit
         while (true) {
 
-            String actionChoice = getUserSelection("View jobs by:", actionChoices);
+            String actionChoice = getUserSelection("View jobs by:", actionChoices);  // within getUserSelection itself, most of the code is within a do-while loop -
+            // conditional check is at the end of the loop's code block.
 
             if (actionChoice.equals("list")) {
 
@@ -61,7 +71,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    System.out.println(JobData.findAll());
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -111,6 +121,6 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        System.out.println(JobData.findAll());
     }
 }
