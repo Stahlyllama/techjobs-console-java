@@ -2,6 +2,7 @@ package org.launchcode.techjobs.console;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -25,11 +26,6 @@ public class  TechJobs {
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
 
-//        for(HashMap<String, String> columnChoices : someJobs){
-//            for(HashMap<String, String> position : columnChoices){
-//                System.out.println(columnChoices);
-//            }
-//        }
         // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
         actionChoices.put("search", "Search");    //Search and List are the data used to generate the first menu
@@ -71,7 +67,7 @@ public class  TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println(JobData.findAll());
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -120,7 +116,16 @@ public class  TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.size()==0){
+            System.out.println("Nothing Found.  Try again.");
+        } else {
+            for (HashMap<String, String> matchedJob : someJobs){
+                System.out.println("*****");
+                for (Map.Entry<String, String> jobKey : matchedJob.entrySet()) {
+                    System.out.println(jobKey.getKey() + ": " + jobKey.getValue());
 
-        System.out.println(JobData.findAll());
+                }
+            }
+        }
     }
 }
