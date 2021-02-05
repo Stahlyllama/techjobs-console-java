@@ -120,7 +120,7 @@ public class  TechJobs {
             System.out.println("Nothing Found.  Try again.");
         } else {
             for (HashMap<String, String> matchedJob : someJobs){
-                System.out.println("*****");
+                System.out.println("\n*****");
                 for (Map.Entry<String, String> jobKey : matchedJob.entrySet()) {
                     System.out.println(jobKey.getKey() + ": " + jobKey.getValue());
 

@@ -72,17 +72,18 @@ public class JobData {
            for (Map.Entry<String, String> category : row.entrySet()) {
                if (category.getValue().toLowerCase().contains(value.toLowerCase())){
                    jobs.add(row);
-
+                   break;
                }
            }
 
         }
-        Set<HashMap<String, String>> cleanJobs = new HashSet<>(jobs);
+        Set<HashMap<String, String>> justJobs = new HashSet<>(jobs);
         jobs.clear();
-        jobs.addAll(cleanJobs);
+        jobs.addAll(justJobs);
 
         return jobs;
     }
+
     /**
      * Read in data from a CSV file and store it in a list
      * METHODS AT THE BOTTOM
